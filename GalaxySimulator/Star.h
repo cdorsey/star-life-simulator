@@ -34,5 +34,9 @@ public:
    {
       return this->starType;
    }
+   int getCreatedAsInt() const
+   {
+      return this->created->getNum();
+   }
 };
 
