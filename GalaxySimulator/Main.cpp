@@ -60,6 +60,10 @@ int main()
       }
    }
 
+   // Sort stars into appropriate "Staging area"
+   // High mass: Go to top of pending pile to die this turn
+   // Mid mass:  Go to bottom of pending pile to die in a future turn
+   // Low mass:  Deleted as low mass stars no longer contribute to ISM
    for (int i = 0; i < turnStars_size; i++)
    {
       if (turnStars[i]->getType() == Star::TYPE_HIGH_MASS)
@@ -73,6 +77,27 @@ int main()
          //Place mid mass stars at the back of pending pile
          //Medium mass stars will die 3 turns after being created
          pending.push_back(turnStars[i]);
+      }
+      else
+      {
+         delete turnStars[i];
+      }
+
+      Star *star = (pending.size() > 0 ? pending.back() : nullptr);
+      while (pending.size() > 0 && 
+         star->getCreatedAsInt() + star->getlifespan() <= thisTurn->getNum())
+      {
+         if (star->getType() == Star::TYPE_HIGH_MASS)
+         {
+            ism.push(star);
+         }
+         else
+         {
+            if (rand() % 2 == 0)
+               ism.push(star);
+            else
+               delete star;
+         }
       }
    }
    // End Turn

@@ -45,5 +45,9 @@ public:
    {
       return this->created->getNum();
    }
+   int getlifespan() const
+   {
+      return this->lifespan;
+   }
 };
 
