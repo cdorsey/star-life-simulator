@@ -6,6 +6,7 @@ class Star
 private:
    int starType;
    Turn *created;
+   int lifespan;
 public:
    const static int TYPE_ISM = 0;
    const static int TYPE_HIGH_MASS = 1;
@@ -14,13 +15,19 @@ public:
 
    Star():
       starType(0),
-      created(nullptr)
+      created(nullptr),
+      lifespan(0)
    { }
 
    Star(int type, Turn* turn) :
       starType(type),
       created(turn)
-   { }
+   {
+      if (type == TYPE_MED_MASS)
+         lifespan = 3;
+      else
+         lifespan = 0;
+   }
 
    void setType(int type)
    {
