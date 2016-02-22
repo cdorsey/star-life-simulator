@@ -19,5 +19,10 @@ public:
       TISupernova(tI),
       TIISuperNova(tII)
    {}
+
+   int getNum() const
+   {
+      return num;
+   }
 };
 
