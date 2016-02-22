@@ -14,10 +14,18 @@ public:
       num(0)
    {}
 
-   Turn(int pn, int tI, int tII):
+   Turn(int pn, int tI, int tII, int n):
       planetaryNeb(pn),
       TISupernova(tI),
-      TIISuperNova(tII)
+      TIISuperNova(tII),
+      num(n)
+   {}
+
+   Turn(const Turn& obj):
+      planetaryNeb(obj.planetaryNeb),
+      TISupernova(obj.TISupernova),
+      TIISuperNova(obj.TIISuperNova),
+      num(obj.num)
    {}
 
    int getNum() const
