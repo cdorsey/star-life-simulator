@@ -24,9 +24,10 @@ public:
    Turn(const Turn& obj):
       planetaryNeb(obj.planetaryNeb),
       TISupernova(obj.TISupernova),
-      TIISuperNova(obj.TIISuperNova),
-      num(obj.num)
-   {}
+      TIISuperNova(obj.TIISuperNova)
+   {
+      num = obj.num + 1;
+   }
 
    int getNum() const
    {
