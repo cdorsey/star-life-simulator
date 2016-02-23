@@ -33,5 +33,12 @@ public:
    {
       return num;
    }
+
+   friend std::ostream& operator<<(std::ostream& os, const Turn& obj) 
+   {
+      os << "TI: " << obj.TISupernova << " TII: " << obj.TIISuperNova << " PN: " << obj.planetaryNeb;
+
+      return os;
+   }
 };
 
