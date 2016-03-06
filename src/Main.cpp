@@ -22,8 +22,7 @@ int main()
 
    for (int turnNum = 1; turnNum <= 30; turnNum++)
    { //Start turn
-      //diceVal = rollDice();
-      diceVal = 1;
+      diceVal = rollDice();
       turnStars = new Star*[diceVal];
       int turnStars_size = diceVal;
 
@@ -81,22 +80,31 @@ int main()
             //Medium mass stars will die 3 turns after being created
             pending.push_back(turnStars[i]);
          }
+         else if (turnStars[i]->getType() == Star::TYPE_LOW_MASS)
+         {
+            //Low mass stars no longer interact with ISM
+            delete turnStars[i];
+         }
          else
          {
-            delete turnStars[i];
+            throw logic_error("Invalid star type");
          }
       }
 
       Star* star = (pending.size() > 0 ? pending.front() : nullptr);
+      //Kill stars at the end of their lives
       while (pending.size() > 0 &&
          star->getCreatedAsInt() + star->getlifespan() <= thisTurn->getNum())
       {
          if (star->getType() == Star::TYPE_HIGH_MASS)
          {
+            thisTurn->incT2();
             ism.push(star);
          }
          else
          {
+            thisTurn->incPN();
+
             if (rand() % 2 == 0)
                ism.push(star);
             else
@@ -107,7 +115,10 @@ int main()
       }
    }
    // End Turn 
-return 0;
+
+   cout << "Final output: " << *(turns.back()) << endl;
+   cin.get();
+   return 0;
 }
    
 
