@@ -14,9 +14,9 @@ public:
    const static int TYPE_LOW_MASS = 3;
 
    Star():
-      starType(0),
-      created(nullptr),
-      lifespan(0)
+           starType(TYPE_ISM),
+           created(nullptr),
+           lifespan(0)
    { }
 
    Star(int type, Turn* turn) :
@@ -45,7 +45,8 @@ public:
    {
       return this->created->getNum();
    }
-   int getlifespan() const
+
+    int getLifespan() const
    {
       return this->lifespan;
    }
