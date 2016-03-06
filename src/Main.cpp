@@ -2,6 +2,7 @@
 #include "Star.h"
 #include <queue>
 #include <list>
+#include <time.h>
 
 using namespace std;
 
@@ -14,6 +15,8 @@ int main() {
     list<Turn *> turns; //List of turns
     Turn *thisTurn = nullptr;    //Information for current turn
     deque<Star *> pending; //Stars that are waiting to be killed
+
+    srand((unsigned int) time(0));
 
     // Create ISM
     for (int i = 0; i < 50; i++)
